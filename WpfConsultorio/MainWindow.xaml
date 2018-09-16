@@ -1,0 +1,28 @@
+﻿<Window x:Class="WpfConsultorio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfConsultorio"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:ConsultorioDataSet x:Key="consultorioDataSet"/>
+        <CollectionViewSource x:Key="pacientesViewSource" Source="{Binding Pacientes, Source={StaticResource consultorioDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource pacientesViewSource}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0.333,385.667" Background="#FFBED3E3" Grid.ColumnSpan="2">
+            <Label Content="Consultorio 2.0" FontFamily="Tw Cen MT Condensed Extra Bold" FontSize="16" FontWeight="Bold" Margin="0,0,0,-0.333" Width="155"/>
+            <Button Click="Button_Click_PHoy" Margin="0,0,0,-0.333" Width="95" Content="Agenda hoy"/>
+            <Button Click="Button_Click_Pturno" Margin="0,0,0,-0.333" Width="110" Content="Dar turno"/>
+            <Button Click="Button_Click_PListaPacientes" Margin="0,0,0,-0.333" Width="145" Content="Pacientes"/>
+            <Button Click="Button_Click_PHistorialTurnos" Margin="0,0,0,-0.333" Width="145" Content="Historial de turnos"/>
+        </StackPanel>
+
+        <Frame x:Name="Main" Margin="0,0,0.333,-0.333" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden" HorizontalAlignment="Right" Width="793" Height="386" VerticalAlignment="Bottom"></Frame>
+    </Grid>
+</Window>
